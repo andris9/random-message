@@ -1,0 +1,41 @@
+From test@example.com Fri Nov 12 12:28:33 2010
+From: test@example.com
+To: someone@example.com
+Subject: testsubject
+Date: Fri, 12 Nov 2010 12:28:33 +0200
+
+Line 1
+>From Line 2
+Line 3
+>>From Line 4
+Line 5
+>>>From Line 6
+Line 7
+
+From someone@example.com Fri Nov 12 12:30:33 2010
+From: someone@example.com
+To: test@example.com
+Subject: Re: testsubject
+Date: Fri, 12 Nov 2010 12:30:33 +0200
+
+Line 11
+>From Line 12
+Line 13
+>>From Line 14
+Line 15
+>>>From Line 16
+Line 17
+
+From test@example.com Fri Nov 12 12:33:33 2010
+From: test@example.com
+To: someone@example.com
+Subject: Re: Re: testsubject
+Date: Fri, 12 Nov 2010 12:33:33 +0200
+
+Line 21
+>From Line 22
+Line 23
+>>From Line 24
+Line 25
+>>>From Line 26
+Line 27

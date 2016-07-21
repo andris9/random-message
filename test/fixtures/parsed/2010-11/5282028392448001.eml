@@ -1,0 +1,13 @@
+From: test@example.com
+To: someone@example.com
+Subject: testsubject
+Date: Fri, 12 Nov 2010 12:28:33 +0200
+
+Line 1
+From Line 2
+Line 3
+>From Line 4
+Line 5
+>>From Line 6
+Line 7
+

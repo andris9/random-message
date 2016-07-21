@@ -1,0 +1,22 @@
+{
+  "name": "random-message",
+  "version": "1.0.0",
+  "description": "Return stream for a random e-mail message",
+  "main": "./lib/random-message.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "author": "Andris Reinman",
+  "license": "MIT",
+  "dependencies": {
+    "mkdirp": "0.5.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-eslint": "^19.0.0",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.5.3"
+  }
+}
