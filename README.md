@@ -1,6 +1,8 @@
 # random-message
 
-Returns a random e-mail message from a folder of messages. Useful for testing. You can also use it to split large mbox files from Google takeout into separate eml files.
+Returns a random e-mail message as a stream from a folder of email messages. Useful for testing, for example if you want to test send queues etc. and you need a flow of real-looking random emails.
+
+You can also use this module to split large mbox files from Google Takeout into separate eml files.
 
 ## Install
 
@@ -22,7 +24,7 @@ var randomMessage = require('random-message');
 
 ```
 - messages-root
-  - 2001-01
+  - YYYY-MM
     - message1.eml
     - message2.eml
     - message3.eml
@@ -30,7 +32,7 @@ var randomMessage = require('random-message');
     - messageN.eml
 ```
 
-Exact format for the message file name does not matter as long as the extension is `.eml`. Messages need to reside in folders where folder name is formatted like this: `YYYY-MM`.
+Exact format for the message file name does not matter as long as the extension is `.eml`. Messages need to reside in folders where folder name is formatted like this: `YYYY-MM`, eg. "2016-07-21". You also need to have at least one email message file in every folder.
 
 ### get
 
@@ -59,7 +61,7 @@ randomMessage.get('/path/to/messages-root', function(err, eml){
 If you have a large mbox file then you can split it into separate eml files using `split`:
 
 ```javascript
-randomMessage.get(mbox, messagesRoot, callback)
+randomMessage.split(mbox, messagesRoot, callback)
 ```
 
 Where
