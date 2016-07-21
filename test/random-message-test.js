@@ -33,49 +33,39 @@ describe('random-message tests', () => {
 
     describe('#get', () => {
         it('should get a random message', done => {
-            randomMessage.get(__dirname + '/fixtures/parsed', (err, message) => {
-                expect(err).to.not.exist;
-                expect(message).to.exist;
-                let chunks = [];
-                message.on('data', chunk => {
-                    chunks.push(chunk);
-                });
-                message.on('end', () => {
-                    let data = Buffer.concat(chunks).toString();
-                    // all test messages look the same
-                    expect(data.match(/^>+From /mg).length).to.eq(2);
-                    expect(data.match(/^From /mg).length).to.eq(1);
-                    expect(data.match(/^>From /mg).length).to.eq(1);
-                    expect(data.match(/^>>From /mg).length).to.eq(1);
-                    done();
-                });
+            let message = randomMessage.get(__dirname + '/fixtures/parsed');
+            let chunks = [];
+            message.on('data', chunk => {
+                chunks.push(chunk);
+            });
+            message.on('end', () => {
+                let data = Buffer.concat(chunks).toString();
+                // all test messages look the same
+                expect(data.match(/^>+From /mg).length).to.eq(2);
+                expect(data.match(/^From /mg).length).to.eq(1);
+                expect(data.match(/^>From /mg).length).to.eq(1);
+                expect(data.match(/^>>From /mg).length).to.eq(1);
+                done();
             });
         });
 
         it('should get the same message', done => {
-            randomMessage.get(__dirname + '/fixtures/parsed', 'abc', (err, message) => {
-                expect(err).to.not.exist;
-                expect(message).to.exist;
-                let chunks = [];
-                message.on('data', chunk => {
-                    chunks.push(chunk);
+            let message1 = randomMessage.get(__dirname + '/fixtures/parsed', 'abc');
+            let chunks1 = [];
+            message1.on('data', chunk => {
+                chunks1.push(chunk);
+            });
+            message1.on('end', () => {
+                let msg1 = Buffer.concat(chunks1).toString();
+                let message2 = randomMessage.get(__dirname + '/fixtures/parsed', 'abc');
+                let chunks2 = [];
+                message2.on('data', chunk => {
+                    chunks2.push(chunk);
                 });
-                message.on('end', () => {
-                    let msg1 = Buffer.concat(chunks).toString();
-                    randomMessage.get(__dirname + '/fixtures/parsed', 'abc', (err, message) => {
-                        expect(err).to.not.exist;
-                        expect(message).to.exist;
-                        let chunks = [];
-                        message.on('data', chunk => {
-                            chunks.push(chunk);
-                        });
-                        message.on('end', () => {
-                            let msg2 = Buffer.concat(chunks).toString();
-                            expect(msg1).to.equal(msg2);
-                            done();
-                        });
-
-                    });
+                message2.on('end', () => {
+                    let msg2 = Buffer.concat(chunks2).toString();
+                    expect(msg1).to.equal(msg2);
+                    done();
                 });
             });
         });

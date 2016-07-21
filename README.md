@@ -1,6 +1,6 @@
 # random-message
 
-Returns a random e-mail message as a stream from a folder of email messages. Useful for testing, for example if you want to test send queues etc. and you need a flow of real-looking random emails.
+Returns a random e-mail message as a stream from a folder of eml formatted email message files. Useful for testing, for example if you want to test send queues and you need a flow of real-looking random emails.
 
 You can also use this module to split large mbox files from Google Takeout into separate eml files.
 
@@ -36,24 +36,30 @@ Exact format for the message file name does not matter as long as the extension 
 
 ### get
 
-To get a random message from the message pool, use `get`:
+To get a random message from the message pool as a stream, use `get`:
 
 ```javascript
-randomMessage.get(messagesRoot, [seed], callback)
+randomMessage.get(messagesRoot, [seed]) → Stream
 ```
 
 Where
 
 - **messagesRoot** is the path for messages-root folder. This folder should include subfolders named as YYYY-MM and these, in turn, should include the actual .eml files
 - **seed** is an optional random seed string. For the same seed string you get the same random message
-- **callback** is the callback function that returns either an error object or a stream object
 
 **Example**
 
 ```javascript
-randomMessage.get('/path/to/messages-root', function(err, eml){
-    eml.pipe(process.stdout); // pipe the random file to stdout
-});
+randomMessage.get('/path/to/messages-root').pipe(process.stdout);
+```
+
+or to get the same random message every time
+
+```javascript
+// Pipe a random message to stdout
+randomMessage.get('/path/to/messages-root', 'somevalue').pipe(process.stdout);
+// Pipe the same random message to stdout
+randomMessage.get('/path/to/messages-root', 'somevalue').pipe(process.stdout);
 ```
 
 ### split

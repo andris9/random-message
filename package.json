@@ -1,6 +1,6 @@
 {
   "name": "random-message",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Return stream for a random e-mail message",
   "main": "./lib/random-message.js",
   "scripts": {
